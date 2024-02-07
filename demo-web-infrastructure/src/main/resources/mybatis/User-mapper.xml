@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibaba.demo.user.UserMapper">
+
+    <resultMap id="authUserResultMap" type="com.alibaba.demo.user.UserDO">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="mark" column="mark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="findByName" resultMap="authUserResultMap">
+        select *
+        from aa_user
+        where name = #{name}
+    </select>
+
+    <insert id="insertOne" parameterType="com.alibaba.demo.user.UserDO"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO aa_user (name, age, mark, create_time, update_time)
+        VALUES (#{name}, #{age}, #{mark}, #{createTime}, #{updateTime});
+    </insert>
+
+</mapper>
